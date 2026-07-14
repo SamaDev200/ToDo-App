@@ -23,8 +23,14 @@ function Todo({ isDark, authToken, changeLogin }) {
           "Authorization": `Token ${authToken}`,
         }
       });
-      const data = await response.json();
-      setUsername(data.username || data.email || data.first_name || "User");
+      if (response.status === 401) {
+        changeLogin(null);
+        return;
+      }
+      if (response.ok) {
+        const data = await response.json();
+        setUsername(data.username || data.email || data.first_name || "User");
+      }
     } catch (err) {
       console.error(err);
     }
@@ -39,6 +45,14 @@ function Todo({ isDark, authToken, changeLogin }) {
           "Authorization": `Token ${authToken}`,
         }
       });
+      
+      if (response.status === 401) {
+        changeLogin(null);
+        return;
+      }
+      
+      if (!response.ok) return;
+
       const data = await response.json();
 
       let OGdata = [];
