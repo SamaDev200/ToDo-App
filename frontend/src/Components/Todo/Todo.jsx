@@ -24,7 +24,7 @@ function Todo({ isDark, authToken, changeLogin }) {
         }
       });
       const data = await response.json();
-      setUsername(data.first_name);
+      setUsername(data.username || data.email || data.first_name || "User");
     } catch (err) {
       console.error(err);
     }

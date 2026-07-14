@@ -23,6 +23,19 @@
   font-weight: 500;
 }
 
+.icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  transition: background-color 0.2s;
+}
+
 .logout-btn {
   color: #ff3b30;
 }

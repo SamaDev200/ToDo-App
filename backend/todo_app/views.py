@@ -87,11 +87,19 @@ def user_logout(request):
 @api_view(['POST'])
 def create_item(request):
     cur_usr=request.user
-    due_date_time=datetime.datetime.strptime(request.data.get("date")+" "+request.data.get("time"),"%Y-%m-%d %H:%M")
-    est_time = int(request.data.get('estimated_time', 0))
-    spent_time = int(request.data.get('spent_time', 0))
+    time_str = request.data.get("time", "00:00")
+    if len(time_str.split(':')) == 3:
+        time_str = time_str.rsplit(':', 1)[0]
+    try:
+        due_date_time=datetime.datetime.strptime(request.data.get("date")+" "+time_str,"%Y-%m-%d %H:%M")
+    except ValueError:
+        due_date_time = datetime.datetime.now()
+        
+    est_time = int(request.data.get('estimated_time') or 0)
+    spent_time = int(request.data.get('spent_time') or 0)
+    
     TodoItem.objects.create(
-        item_label=request.data.get('label'),
+        item_label=request.data.get('label', ''),
         item_description=request.data.get('description'),
         item_status=request.data.get('status'),
         due_date_time=due_date_time,
@@ -120,14 +128,22 @@ def update_item(request):
         it=TodoItem.objects.get(id=item_id)
         if it.user!=request.user:
             return Response({"error":"invalid user!"})
-        it.item_label=request.data.get('label')
+        it.item_label=request.data.get('label', '')
         it.item_description=request.data.get('description')
-        it.due_date_time=datetime.datetime.strptime(request.data.get("date")+" "+request.data.get("time"),"%Y-%m-%d %H:%M")
+        
+        time_str = request.data.get("time", "00:00")
+        if len(time_str.split(':')) == 3:
+            time_str = time_str.rsplit(':', 1)[0]
+        try:
+            it.due_date_time = datetime.datetime.strptime(request.data.get("date")+" "+time_str,"%Y-%m-%d %H:%M")
+        except ValueError:
+            pass
+            
         it.item_status=request.data.get('status')
         if 'estimated_time' in request.data:
-            it.estimated_time = int(request.data.get('estimated_time', 0))
+            it.estimated_time = int(request.data.get('estimated_time') or 0)
         if 'spent_time' in request.data:
-            it.spent_time = int(request.data.get('spent_time', 0))
+            it.spent_time = int(request.data.get('spent_time') or 0)
         it.save()
         return Response({'status':'success'},status=HTTP_200_OK)
     except Exception as e:

@@ -18,6 +18,8 @@
   max-width: 500px;
   background: var(--apple-surface);
   animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 16px;
+  padding: 24px;
 }
 
 .modal-header {
@@ -31,6 +33,34 @@
   font-size: 1.5rem;
   font-weight: 700;
   margin: 0;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--apple-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  transition: background-color 0.2s;
+}
+
+.icon-btn:hover {
+  background-color: var(--apple-border);
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+  margin-top: 24px;
+}
+
 @keyframes slideUp {
   from { opacity: 0; transform: translateY(20px) scale(0.98); }
   to { opacity: 1; transform: translateY(0) scale(1); }
@@ -45,18 +75,10 @@
 
 body.dark-mode input[type="date"]::-webkit-calendar-picker-indicator,
 body.dark-mode input[type="time"]::-webkit-calendar-picker-indicator {
-  filter: invert(1);
+  filter: invert(1) brightness(100%) !important;
 }
 
 body.dark-mode input[type="date"],
 body.dark-mode input[type="time"] {
   color-scheme: dark;
-}
-  justify-content: flex-end;
-  gap: 16px;
-  margin-top: 24px;
-}
-body.dark-mode input[type="date"]::-webkit-calendar-picker-indicator,
-body.dark-mode input[type="time"]::-webkit-calendar-picker-indicator {
-  filter: invert(1) brightness(100%) !important;
 }
