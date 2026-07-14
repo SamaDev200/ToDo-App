@@ -19,7 +19,7 @@ function EditTask({ show, onHide, updateData, authToken, editTask }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!item.description || !item.date || !item.time) {
+    if (!item.description) {
       setError(true);
       return;
     }

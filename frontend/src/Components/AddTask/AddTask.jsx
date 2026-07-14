@@ -10,7 +10,7 @@ function AddTask({ show, onHide, authToken, addnewtask }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!item.description || !item.date || !item.time) {
+    if (!item.description) {
       setError(true);
       return;
     }
