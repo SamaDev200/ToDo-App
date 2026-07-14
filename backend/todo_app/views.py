@@ -141,4 +141,12 @@ def delete_item(request):
         TodoItem.objects.get(id=del_id).delete()
         return Response(status=HTTP_200_OK)
     except Exception as e:
-        return Response({"error":e.__str__},status=HTTP_400_BAD_REQUEST)
+        return Response({"error":e.__str__()},status=HTTP_400_BAD_REQUEST)
+
+@api_view(['GET'])
+def get_all(request):
+    try:
+        items = TodoItem.objects.filter(user=request.user).order_by('due_date_time')
+        return Response({'items': TodoItemSerializer(items, many=True).data}, status=HTTP_200_OK)
+    except Exception as e:
+        return Response({'error': str(e)}, status=HTTP_400_BAD_REQUEST)
