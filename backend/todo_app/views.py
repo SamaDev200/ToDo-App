@@ -75,9 +75,12 @@ def get_user_info(request):
 # User Logout
 @api_view(['POST'])
 def user_logout(request):
-    request.user.auth_token.delete()
+    try:
+        request.user.auth_token.delete()
+    except Exception:
+        pass
     logout(request)
-    return Response()
+    return Response(status=HTTP_200_OK)
 
 #######################################################################
 # Item related operations
