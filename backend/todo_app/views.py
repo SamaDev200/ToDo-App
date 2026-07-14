@@ -93,9 +93,10 @@ def create_item(request):
     if len(time_str.split(':')) == 3:
         time_str = time_str.rsplit(':', 1)[0]
     try:
-        due_date_time=datetime.datetime.strptime(request.data.get("date")+" "+time_str,"%Y-%m-%d %H:%M")
-    except ValueError:
-        due_date_time = datetime.datetime.now()
+        date_str = request.data.get("date") or ""
+        due_date_time = datetime.datetime.strptime(date_str + " " + time_str, "%Y-%m-%d %H:%M")
+    except Exception:
+        due_date_time = timezone.now() if hasattr(timezone, 'now') else datetime.datetime.now()
         
     est_time = int(request.data.get('estimated_time') or 0)
     spent_time = int(request.data.get('spent_time') or 0)
@@ -137,8 +138,9 @@ def update_item(request):
         if len(time_str.split(':')) == 3:
             time_str = time_str.rsplit(':', 1)[0]
         try:
-            it.due_date_time = datetime.datetime.strptime(request.data.get("date")+" "+time_str,"%Y-%m-%d %H:%M")
-        except ValueError:
+            date_str = request.data.get("date") or ""
+            it.due_date_time = datetime.datetime.strptime(date_str + " " + time_str, "%Y-%m-%d %H:%M")
+        except Exception:
             pass
             
         it.item_status=request.data.get('status')
