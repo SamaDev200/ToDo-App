@@ -79,7 +79,6 @@ def user_logout(request):
         request.user.auth_token.delete()
     except Exception:
         pass
-    logout(request)
     return Response(status=HTTP_200_OK)
 
 #######################################################################
