@@ -110,6 +110,8 @@ def get_item(request):
         if it.user!=request.user:
             return Response({"error":"invalid user!"})
         return Response({'item':TodoItemSerializer(it).data},status=HTTP_200_OK)
+    except TodoItem.DoesNotExist:
+        return Response({"error": "Item not found!"}, status=404)
 #update particular item
 @api_view(['POST'])
 def update_item(request):
@@ -130,11 +132,6 @@ def update_item(request):
         return Response({'status':'success'},status=HTTP_200_OK)
     except Exception as e:
         return Response({'error':str(e)},status=HTTP_400_BAD_REQUEST)
-        it.item_status=request.data.get('status')
-        it.save()
-        return Response({'status':'success'},status=HTTP_200_OK)
-    except Exception as e:
-        return Response({'error':e.__str__},status=HTTP_400_BAD_REQUEST)
 
 #delete item
 @api_view(['POST'])
