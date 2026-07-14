@@ -1,0 +1,184 @@
+:root {
+  --apple-bg: #f5f5f7;
+  --apple-surface: rgba(255, 255, 255, 0.7);
+  --apple-border: rgba(0, 0, 0, 0.1);
+  --apple-text: #1d1d1f;
+  --apple-text-muted: #86868b;
+  --apple-blue: #0066cc;
+  --apple-shadow: 0 4px 24px rgba(0,0,0,0.04);
+  --apple-radius: 18px;
+  --apple-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+body.dark-mode {
+  --apple-bg: #000000;
+  --apple-surface: rgba(28, 28, 30, 0.65);
+  --apple-border: rgba(255, 255, 255, 0.15);
+  --apple-text: #f5f5f7;
+  --apple-text-muted: #86868b;
+  --apple-blue: #0a84ff;
+  --apple-shadow: 0 4px 24px rgba(0,0,0,0.2);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: var(--apple-bg);
+  color: var(--apple-text);
+  transition: background-color 0.4s ease, color 0.4s ease;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+#root {
+  width: 100%;
+  max-width: 1200px;
+  padding: 20px;
+}
+
+/* Base Utility Classes for Apple Design */
+.glass-panel {
+  background: var(--apple-surface);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--apple-border);
+  border-radius: var(--apple-radius);
+  box-shadow: var(--apple-shadow);
+  padding: 24px;
+  transition: var(--apple-transition);
+}
+
+.apple-btn {
+  background: var(--apple-blue);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--apple-transition);
+}
+
+.apple-btn:hover {
+  transform: scale(1.02);
+  opacity: 0.9;
+}
+
+.apple-input {
+  width: 100%;
+  background: rgba(120,120,128,0.12);
+  border: 1px solid transparent;
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-size: 16px;
+  color: var(--apple-text);
+  outline: none;
+  transition: var(--apple-transition);
+}
+
+.apple-input:focus {
+  border-color: var(--apple-blue);
+  background: var(--apple-bg);
+}
+
+.theme-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  color: var(--apple-text);
+  font-size: 16px;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 20px;
+  background: rgba(120,120,128,0.12);
+  transition: var(--apple-transition);
+}
+.theme-toggle:hover {
+  background: rgba(120,120,128,0.2);
+}
+
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .app-container {
+    padding: 12px;
+  }
+  
+  .glass-panel {
+    padding: 16px;
+    border-radius: 16px;
+  }
+  
+  .todo-header-section {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  
+  .todo-header-section h2 {
+    font-size: 1.5rem;
+  }
+  
+  .apple-navbar {
+    padding: 8px 12px;
+  }
+  
+  .navbar-brand h1 {
+    font-size: 1.2rem;
+  }
+  
+  .task-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .task-meta {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  
+  .form-row {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .apple-modal-content {
+    width: 95%;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+  
+  .task-actions {
+    opacity: 1;
+    gap: 4px;
+  }
+  
+  .icon-btn {
+    padding: 4px;
+  }
+  
+  .apple-task-item {
+    padding: 12px 8px;
+  }
+}

@@ -1,0 +1,152 @@
+.apple-task-item {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid var(--apple-border);
+  transition: var(--apple-transition);
+  background: transparent;
+  gap: 16px;
+}
+
+.apple-task-item:last-child {
+  border-bottom: none;
+}
+
+.apple-task-item:hover {
+  background: rgba(120, 120, 128, 0.05);
+}
+
+.task-check-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--apple-text-muted);
+  transition: color 0.2s;
+}
+
+.task-check-btn:hover {
+  color: var(--apple-blue);
+}
+
+.icon-checked {
+  color: var(--apple-blue);
+}
+
+.task-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.task-title {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--apple-text);
+  transition: color 0.3s;
+}
+
+.completed .task-title {
+  text-decoration: line-through;
+  color: var(--apple-text-muted);
+}
+
+.task-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.85rem;
+  color: var(--apple-text-muted);
+  flex-wrap: wrap;
+}
+
+.badge {
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  background: rgba(120,120,128,0.12);
+}
+
+.badge-ongoing { background: rgba(0, 102, 204, 0.15); color: #0066cc; }
+.badge-danger { background: rgba(255, 59, 48, 0.15); color: #ff3b30; }
+.badge-warning { background: rgba(255, 149, 0, 0.15); color: #ff9500; }
+.badge-success { background: rgba(52, 199, 89, 0.15); color: #34c759; }
+.badge-secondary { background: rgba(142, 142, 147, 0.15); color: #8e8e93; }
+
+body.dark-mode .badge-ongoing { color: #409cff; }
+body.dark-mode .badge-danger { color: #ff453a; }
+body.dark-mode .badge-warning { color: #ffd60a; }
+body.dark-mode .badge-success { color: #32d74b; }
+body.dark-mode .badge-secondary { color: #98989d; }
+
+.task-actions {
+  display: flex;
+  gap: 8px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.apple-task-item:hover .task-actions {
+  opacity: 1;
+}
+
+.icon-btn {
+  background: none;
+.icon-btn.delete:hover {
+  background: rgba(255, 59, 48, 0.1);
+  color: #ff3b30;
+}
+
+.task-timer {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(120, 120, 128, 0.1);
+}
+
+.timer-idle {
+  color: var(--apple-text-muted);
+}
+
+.timer-running {
+  color: #ff9500;
+  background: rgba(255, 149, 0, 0.15);
+}
+
+.timer-exceeded {
+  color: #ff3b30;
+  background: rgba(255, 59, 48, 0.15);
+  font-weight: 600;
+}
+
+.active-timer-btn {
+  color: #ff9500;
+}
+
+.active-timer-btn:hover {
+  color: #ff9500;
+  background: rgba(255, 149, 0, 0.15);
+}
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-btn:hover {
+  background: rgba(120, 120, 128, 0.12);
+  color: var(--apple-text);
+}
+
+.icon-btn.delete:hover {
+  background: rgba(255, 59, 48, 0.1);
+  color: #ff3b30;
+}

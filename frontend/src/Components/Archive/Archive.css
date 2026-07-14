@@ -1,0 +1,9 @@
+.archive-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.archive-container .list-title {
+  color: var(--apple-text-muted);
+}

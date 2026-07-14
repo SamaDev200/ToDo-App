@@ -1,0 +1,9 @@
+asgiref
+Django>=4.2
+django-cors-headers
+djangorestframework
+python-dateutil
+pytz
+six
+sqlparse
+urllib3

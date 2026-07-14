@@ -1,0 +1,98 @@
+.todo-dashboard {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.todo-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+.todo-header-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px 24px;
+}
+
+.todo-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.todo-header-top h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.add-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.search-bar {
+  position: relative;
+  width: 100%;
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--apple-text-muted);
+}
+
+.search-bar .apple-input {
+  padding-left: 40px;
+}
+
+.todo-lists-container {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.todo-main-list {
+  flex: 2;
+  padding: 24px;
+}
+
+.todo-archive-sidebar {
+  flex: 1;
+}
+
+.list-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: var(--apple-text);
+}
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--apple-text-muted);
+  font-size: 1.1rem;
+}
+
+@media (max-width: 900px) {
+  .todo-lists-container {
+    flex-direction: column;
+  }
+  .todo-main-list, .todo-archive-sidebar {
+    width: 100%;
+  }
+}
