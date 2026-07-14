@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: todo-app-backend
+    env: python
+    region: frankfurt
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn server_logic.wsgi:application"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
