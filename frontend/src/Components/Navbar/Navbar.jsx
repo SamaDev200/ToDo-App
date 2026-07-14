@@ -4,7 +4,7 @@ import './Navbar.css';
 function NavbarAbove({ aFunctionCall, authToken, uname }) {
   const logoutCall = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:8000/user/logout/', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/user/logout/`, {
         method: 'POST',
         headers: { 
           "Content-Type": "application/json",

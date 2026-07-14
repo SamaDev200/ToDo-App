@@ -40,7 +40,7 @@ function Task({ id, desc, status, label, date, time, estimated_time, spent_time,
 
     const syncSpentTime = async (newSpentTime) => {
         try {
-            await fetch('http://127.0.0.1:8000/item/update', {
+            await fetch(`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/item/update`, {
                 method: 'POST',
                 headers: { 
                     "Content-Type": "application/json",

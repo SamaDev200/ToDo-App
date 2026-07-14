@@ -16,7 +16,7 @@ function Todo({ isDark, authToken, changeLogin }) {
 
   const fetchUsername = useCallback(async () => {
     try {
-      const response = await fetch('http://127.0.0.1:8000/user/getinfo/', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/user/getinfo/`, {
         method: 'POST',
         headers: { 
           "Content-Type": "application/json",
@@ -32,7 +32,7 @@ function Todo({ isDark, authToken, changeLogin }) {
 
   const updateData = useCallback(async () => {
     try {
-      const response = await fetch('http://127.0.0.1:8000/item/get_all', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/item/get_all`, {
         method: 'POST',
         headers: { 
           "Content-Type": "application/json",
@@ -90,7 +90,7 @@ function Todo({ isDark, authToken, changeLogin }) {
     if (item) {
       const updateItem = { ...item, status: "Completed", date, time };
       try {
-        await fetch('http://127.0.0.1:8000/item/update', {
+        await fetch(`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/item/update`, {
           method: 'POST',
           headers: { 
             "Content-Type": "application/json",
@@ -109,7 +109,7 @@ function Todo({ isDark, authToken, changeLogin }) {
     const item = originalData.find(i => i.id.toString() === id.toString());
     if (item) {
       try {
-        await fetch('http://127.0.0.1:8000/item/delete', {
+        await fetch(`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/item/delete`, {
           method: 'POST',
           headers: { 
             "Content-Type": "application/json",

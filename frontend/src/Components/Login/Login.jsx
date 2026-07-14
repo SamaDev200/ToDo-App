@@ -16,7 +16,7 @@ function Login({ loggedIn, aFunctionCall, changeText }) {
     if (!loggedIn) {
       const loginData = { username, password };
       try {
-        const response = await fetch('http://127.0.0.1:8000/user/login/', {
+        const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/user/login/`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(loginData)
