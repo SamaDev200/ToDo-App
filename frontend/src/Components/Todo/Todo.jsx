@@ -50,10 +50,6 @@ function Todo({ isDark, authToken, changeLogin }) {
         let newData = {
           key: keyId++, 
           id: item.id,
-      data.forEach(item => {
-        let newData = {
-          key: keyId++, 
-          id: item.id,
           description: item.description,
           status: item.status,
           label: item.label,
