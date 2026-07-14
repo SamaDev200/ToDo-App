@@ -133,10 +133,8 @@ function Todo({ isDark, authToken, changeLogin }) {
     <div className="todo-dashboard">
       <NavbarAbove 
         toggleModal={toggleAddTask}
-                  <Task
-                    key={item.id}
-                    id={item.id}
-                    desc={item.description}
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
       />
 
       <div className="todo-content-wrapper">

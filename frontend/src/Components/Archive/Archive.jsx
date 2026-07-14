@@ -7,7 +7,11 @@ function Archive({ doneItems, removeItem, isDark }) {
       <h3 className="list-title">Completed</h3>
       
       {doneItems.length !== 0 ? (
+        <div className="archive-list">
           {doneItems.map(item => (
+            <Task
+              key={item.id}
+              id={item.id}
               desc={item.description}
               status={item.status}
               label={item.label}
@@ -15,8 +19,6 @@ function Archive({ doneItems, removeItem, isDark }) {
               time={item.time}
               estimated_time={item.estimated_time}
               spent_time={item.spent_time}
-              comp="Archive"
-              time={item.time}
               comp="Archive"
               removeItem={removeItem}
             />
