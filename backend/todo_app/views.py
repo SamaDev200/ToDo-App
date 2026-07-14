@@ -166,3 +166,24 @@ def get_all(request):
         return Response({'items': TodoItemSerializer(items, many=True).data}, status=HTTP_200_OK)
     except Exception as e:
         return Response({'error': str(e)}, status=HTTP_400_BAD_REQUEST)
+
+import subprocess
+import os
+
+@csrf_exempt
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def github_webhook(request):
+    try:
+        # Pull latest code from GitHub
+        repo_dir = '/home/SamaDev/ToDo-App'
+        subprocess.run(['git', 'pull', 'origin', 'master'], cwd=repo_dir, check=True)
+        
+        # Reload PythonAnywhere WSGI server
+        wsgi_file = '/var/www/samadev_pythonanywhere_com_wsgi.py'
+        if os.path.exists(wsgi_file):
+            os.utime(wsgi_file, None)
+            
+        return Response({"status": "Updated and reloaded successfully!"}, status=HTTP_200_OK)
+    except Exception as e:
+        return Response({"error": str(e)}, status=HTTP_400_BAD_REQUEST)
