@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { X } from 'lucide-react';
 import './Modal.css';
 
+function AddTask({ show, onHide, authToken, addnewtask }) {
   const [item, setItem] = useState({ description: "", label: "", date: "", time: "", estimated_time: "" });
-  const [error, setError] = useState(false);
   const [error, setError] = useState(false);
 
   if (!show) return null;
@@ -15,17 +15,13 @@ import './Modal.css';
       return;
     }
 
-    let nowDate = Date.now();
-    let dueDate = new Date(item.date + " " + item.time);
-    let daysDiff = (dueDate.getTime() - nowDate) / (1000 * 3600 * 24);
+    let status = "Not completed";
     const sendItem = { 
       ...item, 
       status, 
       estimated_time: item.estimated_time ? parseInt(item.estimated_time) : 0,
       spent_time: 0
     };
-
-    const sendItem = { ...item, status };
 
     try {
       const response = await fetch('http://127.0.0.1:8000/item/create', {
@@ -65,18 +61,29 @@ import './Modal.css';
               placeholder="What needs to be done?"
             />
           </div>
+          
           <div className="form-row">
             <div className="form-group">
-          <div className="form-row">
-            <div className="form-group">
-              <label>Label</label>
+              <label>Date</label>
               <input 
+                type="date"
                 className="apple-input" 
-                value={item.label}
-                onChange={(e) => setItem({...item, label: e.target.value})}
-                placeholder="e.g. Work, Personal"
+                value={item.date}
+                onChange={(e) => setItem({...item, date: e.target.value})}
               />
             </div>
+            <div className="form-group">
+              <label>Time</label>
+              <input 
+                type="time"
+                className="apple-input" 
+                value={item.time}
+                onChange={(e) => setItem({...item, time: e.target.value})}
+              />
+            </div>
+          </div>
+          
+          <div className="form-row">
             <div className="form-group">
               <label>Estimated Time (min)</label>
               <input 
@@ -88,24 +95,15 @@ import './Modal.css';
                 placeholder="e.g. 30"
               />
             </div>
-          </div>
-              <label>Time</label>
+            <div className="form-group">
+              <label>Label</label>
               <input 
-                type="time"
                 className="apple-input" 
-                value={item.time}
-                onChange={(e) => setItem({...item, time: e.target.value})}
+                value={item.label}
+                onChange={(e) => setItem({...item, label: e.target.value})}
+                placeholder="e.g. Work, Personal"
               />
             </div>
-          </div>
-          <div className="form-group">
-            <label>Label</label>
-            <input 
-              className="apple-input" 
-              value={item.label}
-              onChange={(e) => setItem({...item, label: e.target.value})}
-              placeholder="e.g. Work, Personal"
-            />
           </div>
 
           {error && <div className="error-text">Please fill in title, date, and time.</div>}

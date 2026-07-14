@@ -12,8 +12,7 @@ function EditTask({ show, onHide, updateData, authToken, editTask }) {
     status: editTask.status,
     estimated_time: editTask.estimated_time || ""
   });
-    status: editTask.status
-  });
+  
   const [error, setError] = useState(false);
 
   if (!show) return null;
@@ -27,14 +26,9 @@ function EditTask({ show, onHide, updateData, authToken, editTask }) {
 
     const updateItem = { 
       ...item, 
-      status,
+      status: item.status,
       estimated_time: item.estimated_time ? parseInt(item.estimated_time) : 0
     };
-    let dueDate = new Date(item.date + " " + item.time);
-    let daysDiff = (dueDate.getTime() - nowDate) / (1000 * 3600 * 24);
-    let status = daysDiff < 0 ? "Overdue" : daysDiff <= 2 ? "Pending" : "Ongoing";
-
-    const updateItem = { ...item, status };
 
     try {
       const response = await fetch('http://127.0.0.1:8000/item/update', {
@@ -47,7 +41,7 @@ function EditTask({ show, onHide, updateData, authToken, editTask }) {
       });
 
       if (response.status === 200) {
-        updateData();
+        updateData(updateItem);
         onHide();
       } else {
         alert("There was an error updating the task.");
@@ -74,17 +68,29 @@ function EditTask({ show, onHide, updateData, authToken, editTask }) {
               placeholder="What needs to be done?"
             />
           </div>
-          <div className="form-row">
+          
           <div className="form-row">
             <div className="form-group">
-              <label>Label</label>
+              <label>Date</label>
               <input 
+                type="date"
                 className="apple-input" 
-                value={item.label}
-                onChange={(e) => setItem({...item, label: e.target.value})}
-                placeholder="e.g. Work, Personal"
+                value={item.date}
+                onChange={(e) => setItem({...item, date: e.target.value})}
               />
             </div>
+            <div className="form-group">
+              <label>Time</label>
+              <input 
+                type="time"
+                className="apple-input" 
+                value={item.time}
+                onChange={(e) => setItem({...item, time: e.target.value})}
+              />
+            </div>
+          </div>
+          
+          <div className="form-row">
             <div className="form-group">
               <label>Estimated Time (min)</label>
               <input 
@@ -96,25 +102,15 @@ function EditTask({ show, onHide, updateData, authToken, editTask }) {
                 placeholder="e.g. 30"
               />
             </div>
-          </div>
             <div className="form-group">
-              <label>Time</label>
+              <label>Label</label>
               <input 
-                type="time"
                 className="apple-input" 
-                value={item.time}
-                onChange={(e) => setItem({...item, time: e.target.value})}
+                value={item.label}
+                onChange={(e) => setItem({...item, label: e.target.value})}
+                placeholder="e.g. Work, Personal"
               />
             </div>
-          </div>
-          <div className="form-group">
-            <label>Label</label>
-            <input 
-              className="apple-input" 
-              value={item.label}
-              onChange={(e) => setItem({...item, label: e.target.value})}
-              placeholder="e.g. Work, Personal"
-            />
           </div>
 
           {error && <div className="error-text">Please fill in title, date, and time.</div>}
