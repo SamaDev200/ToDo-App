@@ -96,3 +96,22 @@
     width: 100%;
   }
 }
+
+@media (max-width: 480px) {
+  .todo-header-section {
+    padding: 16px 12px;
+  }
+  
+  .todo-header-top h2 {
+    font-size: 1.5rem;
+  }
+  
+  .todo-main-list {
+    padding: 16px 12px;
+  }
+  
+  .search-bar .apple-input {
+    padding: 10px 10px 10px 36px;
+    font-size: 0.95rem;
+  }
+}

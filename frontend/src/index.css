@@ -106,11 +106,16 @@ body {
 .theme-toggle:hover {
   background: rgba(120,120,128,0.2);
 }
-
-}
-
 /* Responsive Design */
 @media (max-width: 768px) {
+  .theme-toggle {
+    top: 10px;
+    right: 10px;
+    padding: 6px 12px;
+    font-size: 14px;
+    z-index: 100;
+  }
+  
   .app-container {
     padding: 12px;
   }
@@ -154,7 +159,7 @@ body {
     gap: 12px;
   }
   
-  .apple-modal-content {
+  .apple-modal {
     width: 95%;
     padding: 20px;
   }

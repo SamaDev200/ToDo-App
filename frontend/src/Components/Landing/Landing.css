@@ -53,3 +53,15 @@
     max-width: 400px;
   }
 }
+
+@media (max-width: 480px) {
+  .landing-title {
+    font-size: 2rem;
+  }
+  .landing-subtitle {
+    font-size: 1.1rem;
+  }
+  .landing-welcome {
+    font-size: 1.25rem;
+  }
+}

@@ -43,3 +43,30 @@
 .logout-btn:hover {
   background: rgba(255, 59, 48, 0.1);
 }
+
+@media (max-width: 480px) {
+  .apple-navbar {
+    padding: 10px 12px;
+  }
+  
+  .navbar-brand h1 {
+    font-size: 1.25rem;
+  }
+  
+  .navbar-user {
+    gap: 8px;
+  }
+  
+  .navbar-greeting {
+    font-size: 0.9rem;
+    max-width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .icon-btn {
+    width: 32px;
+    height: 32px;
+  }
+}
